@@ -146,7 +146,7 @@ export default function Home() {
 
           <div className="flex items-center gap-6 text-xs text-slate-400 font-mono">
             <a
-              href="https://instagram.com/PLACEHOLDER"
+              href="https://www.instagram.com/charan__3_/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#4de8f0] transition-colors flex items-center gap-1.5"

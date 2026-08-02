@@ -42,7 +42,7 @@ export function Toast() {
                 </div>
 
                 <a
-                  href="https://instagram.com/PLACEHOLDER"
+                  href="https://www.instagram.com/charan__3_/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-gradient-to-r from-[#4de8f0]/15 via-[#9d7bff]/20 to-[#4de8f0]/15 border border-[#4de8f0]/40 text-xs font-mono font-semibold text-[#4de8f0] hover:text-white hover:border-[#4de8f0] transition-all group/link shadow-sm hover:shadow-[0_0_20px_rgba(77,232,240,0.3)]"
