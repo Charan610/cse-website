@@ -4,17 +4,19 @@ import React, { useState, useEffect } from "react";
 import { Navbar, NAV_ITEMS } from "@/components/Navbar";
 import { Toast } from "@/components/Toast";
 import { SectionTrends } from "@/components/SectionTrends";
+import { SectionCompanies } from "@/components/SectionCompanies";
 import { SectionLanguage } from "@/components/SectionLanguage";
-import { SectionRoadmap } from "@/components/SectionRoadmap";
+import { SectionDSARoadmap } from "@/components/SectionDSARoadmap";
+import { SectionWebDevRoadmap } from "@/components/SectionWebDevRoadmap";
+import { SectionCoreCSE } from "@/components/SectionCoreCSE";
 import { SectionInternships } from "@/components/SectionInternships";
 import { SectionAIAssistant } from "@/components/SectionAIAssistant";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, Sparkles, ArrowLeft, ArrowRight } from "lucide-react";
+import { Terminal, ArrowLeft, ArrowRight } from "lucide-react";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string>("trends");
 
-  // Sync hash if user lands with #language, #roadmap, etc.
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
     if (hash && NAV_ITEMS.some((item) => item.id === hash)) {
@@ -38,13 +40,13 @@ export default function Home() {
       <div className="fixed inset-0 bg-grid-lumina opacity-60 pointer-events-none z-0" />
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[450px] bg-gradient-to-b from-[#4de8f0]/10 via-[#9d7bff]/5 to-transparent blur-[160px] pointer-events-none z-0" />
 
-      {/* Sticky Tabbed Header */}
+      {/* Sticky Navigation Bar */}
       <Navbar activeTab={activeTab} onSelectTab={handleTabChange} />
 
       {/* Main Slide Workspace */}
       <main className="relative z-10 pt-20 sm:pt-24 pb-12 flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-        {/* Slide Deck Tabs Navigation Bar */}
-        <div className="my-6 p-2 rounded-2xl glass-panel border border-white/10 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+        {/* Top-level Separate Tabs Switcher Bar */}
+        <div className="my-6 p-2 rounded-2xl glass-panel border border-white/10 flex items-center justify-start gap-2 overflow-x-auto no-scrollbar scroll-smooth">
           {NAV_ITEMS.map((item, idx) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -52,47 +54,48 @@ export default function Home() {
               <button
                 key={item.id}
                 onClick={() => handleTabChange(item.id)}
-                className={`relative px-4 py-2.5 rounded-xl text-xs font-mono font-medium transition-all duration-300 flex items-center gap-2.5 shrink-0 ${
+                className={`relative px-3.5 py-2.5 rounded-xl text-xs font-mono font-medium transition-all duration-200 flex items-center gap-2 shrink-0 ${
                   isActive
-                    ? "text-white bg-gradient-to-r from-[#4de8f0]/20 via-[#9d7bff]/20 to-[#4de8f0]/20 border border-[#4de8f0]/40 shadow-[0_0_20px_rgba(77,232,240,0.15)] font-bold"
+                    ? "text-white bg-gradient-to-r from-[#4de8f0]/25 via-[#9d7bff]/20 to-[#4de8f0]/25 border border-[#4de8f0]/40 shadow-[0_0_20px_rgba(77,232,240,0.2)] font-bold"
                     : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
                 }`}
               >
                 <span
                   className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-bold ${
-                    isActive
-                      ? "bg-[#4de8f0] text-[#051424]"
-                      : "bg-white/10 text-slate-400"
+                    isActive ? "bg-[#4de8f0] text-[#051424]" : "bg-white/10 text-slate-400"
                   }`}
                 >
                   0{idx + 1}
                 </span>
                 <Icon className={`w-3.5 h-3.5 ${isActive ? "text-[#4de8f0]" : "text-slate-400"}`} />
-                <span>{item.label}</span>
+                <span className="whitespace-nowrap">{item.label}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Animated Slide Content Switcher */}
+        {/* Animated Single Component Display Per Tab */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, x: 25, scale: 0.99 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -25, scale: 0.99 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.3 }}
             className="w-full"
           >
             {activeTab === "trends" && <SectionTrends />}
-            {activeTab === "language" && <SectionLanguage />}
-            {activeTab === "roadmap" && <SectionRoadmap />}
-            {activeTab === "internships" && <SectionInternships />}
+            {activeTab === "companies" && <SectionCompanies />}
+            {activeTab === "languages" && <SectionLanguage />}
+            {activeTab === "dsa-roadmap" && <SectionDSARoadmap />}
+            {activeTab === "webdev-roadmap" && <SectionWebDevRoadmap />}
+            {activeTab === "core-cse" && <SectionCoreCSE />}
+            {activeTab === "internships-projects" && <SectionInternships />}
             {activeTab === "ai-assistant" && <SectionAIAssistant />}
           </motion.div>
         </AnimatePresence>
 
-        {/* Previous / Next Slide Footer Navigation */}
+        {/* Previous / Next Tab Footer Navigation */}
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           {prevSlide ? (
             <button
@@ -100,14 +103,14 @@ export default function Home() {
               className="w-full sm:w-auto px-5 py-3 rounded-xl glass-card border border-white/10 hover:border-[#4de8f0]/40 text-xs font-mono text-slate-300 hover:text-white flex items-center justify-center gap-2 group transition-all"
             >
               <ArrowLeft className="w-4 h-4 text-[#4de8f0] group-hover:-translate-x-1 transition-transform" />
-              <span>Previous: {prevSlide.label}</span>
+              <span>Previous Tab: {prevSlide.label}</span>
             </button>
           ) : (
             <div className="hidden sm:block" />
           )}
 
           <div className="text-xs font-mono text-slate-400 text-center">
-            Slide <span className="text-[#4de8f0] font-bold">{currentIndex + 1}</span> of {NAV_ITEMS.length}
+            Tab <span className="text-[#4de8f0] font-bold">{currentIndex + 1}</span> of {NAV_ITEMS.length}
           </div>
 
           {nextSlide ? (
@@ -115,7 +118,7 @@ export default function Home() {
               onClick={() => handleTabChange(nextSlide.id)}
               className="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-[#4de8f0]/20 to-[#9d7bff]/20 border border-[#4de8f0]/40 hover:border-[#4de8f0] text-xs font-mono text-white font-semibold flex items-center justify-center gap-2 group transition-all"
             >
-              <span>Next: {nextSlide.label}</span>
+              <span>Next Tab: {nextSlide.label}</span>
               <ArrowRight className="w-4 h-4 text-[#4de8f0] group-hover:translate-x-1 transition-transform" />
             </button>
           ) : (
@@ -136,7 +139,7 @@ export default function Home() {
                 CSE<span className="text-gradient-cyan">Guide</span>
               </span>
               <p className="text-[11px] text-slate-400 font-mono">
-                Built with love by Charan, with AI • Lumina Slide Deck Edition
+                Built with love by Charan, with AI • Modular Separate Tabs Edition
               </p>
             </div>
           </div>
