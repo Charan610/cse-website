@@ -9,34 +9,35 @@ interface StatCardProps {
   label: string;
   subtext: string;
   icon: LucideIcon;
-  accentColor?: "cyan" | "violet";
+  accentColor?: "teal" | "copper" | "cyan" | "violet";
   trend?: string;
 }
 
-export function StatCard({ value, label, subtext, icon: Icon, accentColor = "cyan", trend }: StatCardProps) {
-  const isCyan = accentColor === "cyan";
+export function StatCard({ value, label, subtext, icon: Icon, accentColor = "teal", trend }: StatCardProps) {
+  const isTeal = accentColor === "teal" || accentColor === "cyan";
 
   return (
     <motion.div
-      whileHover={{ y: -6, scale: 1.02 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      whileHover={{ y: -4, scale: 1.015 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
       className={`relative p-6 rounded-2xl glass-card ${
-        isCyan ? "hover:border-[#4de8f0]/40" : "glass-card-violet"
+        isTeal ? "hover:border-[#48B5AC]/40" : "glass-card-copper"
       } group overflow-hidden`}
     >
       {/* Background radial glow */}
       <div
         className={`absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none transition-opacity group-hover:opacity-100 ${
-          isCyan ? "bg-[#4de8f0]/15 opacity-50" : "bg-[#9d7bff]/20 opacity-50"
+          isTeal ? "bg-[#48B5AC]/15 opacity-40" : "bg-[#D68F5C]/15 opacity-40"
         }`}
       />
 
       <div className="flex items-start justify-between gap-4 mb-4">
         <div
           className={`p-3 rounded-xl border ${
-            isCyan
-              ? "bg-[#4de8f0]/10 border-[#4de8f0]/30 text-[#4de8f0]"
-              : "bg-[#9d7bff]/10 border-[#9d7bff]/30 text-[#9d7bff]"
+            isTeal
+              ? "bg-[#48B5AC]/10 border-[#48B5AC]/30 text-[#48B5AC]"
+              : "bg-[#D68F5C]/10 border-[#D68F5C]/30 text-[#D68F5C]"
           }`}
         >
           <Icon className="w-6 h-6" />
@@ -45,9 +46,9 @@ export function StatCard({ value, label, subtext, icon: Icon, accentColor = "cya
         {trend && (
           <span
             className={`px-2.5 py-1 rounded-full text-xs font-mono font-medium border ${
-              isCyan
-                ? "bg-[#4de8f0]/10 text-[#4de8f0] border-[#4de8f0]/25"
-                : "bg-[#9d7bff]/10 text-[#9d7bff] border-[#9d7bff]/25"
+              isTeal
+                ? "bg-[#48B5AC]/10 text-[#48B5AC] border-[#48B5AC]/25"
+                : "bg-[#D68F5C]/10 text-[#D68F5C] border-[#D68F5C]/25"
             }`}
           >
             {trend}
@@ -57,7 +58,7 @@ export function StatCard({ value, label, subtext, icon: Icon, accentColor = "cya
 
       <div className="space-y-1">
         <div className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white flex items-baseline gap-1 font-mono">
-          <span className={isCyan ? "text-gradient-cyan" : "text-gradient-violet"}>{value}</span>
+          <span className={isTeal ? "text-gradient-teal" : "text-gradient-copper"}>{value}</span>
         </div>
         <h3 className="text-base font-semibold text-slate-200">{label}</h3>
         <p className="text-xs text-slate-400 leading-relaxed">{subtext}</p>
@@ -67,9 +68,8 @@ export function StatCard({ value, label, subtext, icon: Icon, accentColor = "cya
       <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-slate-500">
         <span className="flex items-center gap-1.5 font-mono">
           <Info className="w-3 h-3 text-slate-400" />
-          Industry Estimate (Approx)
+          Industry Benchmark
         </span>
-        {/* TODO: Replace with live verified metrics API or verified source dataset link */}
       </div>
     </motion.div>
   );

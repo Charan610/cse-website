@@ -39,46 +39,47 @@ export function SectionWebDevRoadmap() {
     <section id="webdev-roadmap" className="relative py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
       {/* Header */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
         className="text-center max-w-3xl mx-auto space-y-3"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#9d7bff]/10 border border-[#9d7bff]/30 text-[#9d7bff] text-xs font-mono font-medium">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-[#48B5AC] text-xs font-mono font-medium">
           <Globe className="w-3.5 h-3.5" />
-          <span>FULL-STACK WEB PATHWAY</span>
+          <span>TAB 4 OF 7 • FULL-STACK WEB PATHWAY</span>
         </div>
 
-        <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight font-sora">
-          Web Dev <span className="text-gradient-violet">Stack & Roadmap</span>
+        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight font-sora">
+          Web Dev <span className="text-gradient-teal">Stack & Roadmap</span>
         </h2>
 
         <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-          From HTML/JS fundamentals to Next.js full-stack architectures, databases, and Vercel cloud deployment.
+          From HTML/JS fundamentals to Next.js full-stack architectures, databases, and cloud deployment.
         </p>
       </motion.div>
 
       {/* Progress & Controls */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl glass-panel border border-white/10">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl glass-panel border border-white/[0.08]">
         <div className="flex items-center gap-3 w-full sm:w-auto">
-          <div className="px-3 py-1 rounded-xl bg-[#9d7bff]/10 border border-[#9d7bff]/30 text-xs font-mono text-[#9d7bff] font-bold">
+          <div className="px-3 py-1 rounded-xl bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-xs font-mono text-[#48B5AC] font-bold">
             {totalDone} / {WEBDEV_TOPICS.length} Completed ({progressPercent}%)
           </div>
           <div className="w-32 bg-white/10 h-2 rounded-full overflow-hidden hidden sm:block">
             <div
-              className="bg-gradient-to-r from-[#9d7bff] to-[#4de8f0] h-full transition-all duration-300"
+              className="bg-gradient-to-r from-[#48B5AC] to-[#D68F5C] h-full transition-all duration-300"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
         </div>
 
-        <div className="flex items-center gap-2 p-1 bg-[#090c16] rounded-xl border border-white/10 shrink-0 text-xs font-medium">
+        <div className="flex items-center gap-2 p-1 bg-[#121318] rounded-xl border border-white/[0.08] shrink-0 text-xs font-medium">
           <span className="text-slate-400 pl-2 font-mono">View:</span>
           <button
             onClick={() => setViewMode("list")}
             className={`px-3 py-1.5 rounded-lg transition-all ${
               viewMode === "list"
-                ? "bg-[#9d7bff]/20 text-[#9d7bff] border border-[#9d7bff]/30 font-semibold"
+                ? "bg-[#48B5AC]/20 text-[#48B5AC] border border-[#48B5AC]/30 font-semibold"
                 : "text-slate-400 hover:text-white"
             }`}
           >
@@ -88,7 +89,7 @@ export function SectionWebDevRoadmap() {
             onClick={() => setViewMode("phase")}
             className={`px-3 py-1.5 rounded-lg transition-all ${
               viewMode === "phase"
-                ? "bg-[#4de8f0]/20 text-[#4de8f0] border border-[#4de8f0]/30 font-semibold"
+                ? "bg-[#D68F5C]/20 text-[#D68F5C] border border-[#D68F5C]/30 font-semibold"
                 : "text-slate-400 hover:text-white"
             }`}
           >
@@ -99,14 +100,18 @@ export function SectionWebDevRoadmap() {
 
       {/* Topics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {WEBDEV_TOPICS.map((topic) => {
+        {WEBDEV_TOPICS.map((topic, idx) => {
           const isDone = !!completedItems[topic.id];
           return (
-            <div
+            <motion.div
               key={topic.id}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: idx * 0.04 }}
               onClick={() => toggleCheck(topic.id)}
               className={`p-4 rounded-xl glass-card border transition-all cursor-pointer select-none flex items-start gap-3.5 ${
-                isDone ? "bg-emerald-950/20 border-emerald-500/40" : "border-white/10 hover:border-[#9d7bff]/30"
+                isDone ? "bg-emerald-950/20 border-emerald-500/40" : "border-white/[0.08] hover:border-[#48B5AC]/30"
               }`}
             >
               <button className="mt-0.5 text-slate-400 shrink-0">
@@ -124,7 +129,7 @@ export function SectionWebDevRoadmap() {
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">{topic.desc}</p>
                 <div className="flex flex-wrap gap-1.5 pt-1">
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#4de8f0]/10 text-[#4de8f0] border border-[#4de8f0]/20">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#D68F5C]/10 text-[#D68F5C] border border-[#D68F5C]/20">
                     {topic.phase}
                   </span>
                   {topic.tags.map((tag, tIdx) => (
@@ -134,7 +139,7 @@ export function SectionWebDevRoadmap() {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>

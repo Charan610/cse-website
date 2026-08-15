@@ -3,12 +3,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Tabs } from "./Tabs";
-import { Code2, Zap, Check, X, ShieldAlert, Sparkles, Scale, Terminal } from "lucide-react";
+import { Code2, Zap, Check, X, Sparkles, Scale, Terminal } from "lucide-react";
 
 const LANGUAGE_DETAILS = {
   cpp: {
     name: "C++ (STL)",
-    tagline: "The Unrivaled Speed King for Competitive Programming",
+    tagline: "The Unrivaled Speed Standard for Competitive Programming",
     syntaxFeel: "Low-level feel with direct memory management pointers, fast I/O, and rich STL templates.",
     stl: "std::vector, std::unordered_map, std::priority_queue, std::set, std::sort (IntroSort).",
     interviewUsage: "Globally accepted at 100% of tech firms. Preferred for high-frequency trading and backend systems.",
@@ -22,7 +22,7 @@ const LANGUAGE_DETAILS = {
       "Steeper learning curve with manual memory concepts & verbose template syntax.",
       "No built-in BigInteger support for handling huge numbers beyond uint64_t.",
     ],
-    verdict: "Best if: You target competitive programming (Codeforces/CodeChef) or want peak execution speed for MAANG coding rounds.",
+    verdict: "Best if: You target competitive programming (Codeforces/CodeChef) or want peak execution speed for Tier-1 coding rounds.",
     codeSnippet: `// C++ Fast I/O & Vector Sorting
 #include <iostream>
 #include <vector>
@@ -105,25 +105,25 @@ export function SectionLanguage() {
   const selected = LANGUAGE_DETAILS[activeLang];
 
   return (
-    <section id="language" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Background glow */}
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-[#9d7bff]/10 blur-[100px] pointer-events-none rounded-full" />
+    <section id="language" className="relative py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      {/* Background ambient glow */}
+      <div className="absolute top-1/3 right-10 w-96 h-96 bg-[#48B5AC]/10 blur-[120px] pointer-events-none rounded-full" />
 
       {/* Section Header */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-center max-w-3xl mx-auto mb-14 space-y-4"
+        transition={{ duration: 0.4 }}
+        className="text-center max-w-3xl mx-auto mb-10 space-y-3"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#9d7bff]/10 border border-[#9d7bff]/30 text-[#9d7bff] text-xs font-mono font-medium">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-[#48B5AC] text-xs font-mono font-medium">
           <Code2 className="w-3.5 h-3.5" />
-          <span>SECTION II • LANGUAGE ARCHITECTURE</span>
+          <span>TAB 1 OF 7 • LANGUAGE ARCHITECTURE</span>
         </div>
 
-        <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-          C++, Java, or Python for DSA — <span className="text-gradient-violet">Which Should You Learn?</span>
+        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
+          C++, Java, or Python for DSA — <span className="text-gradient-teal">Which Should You Learn?</span>
         </h2>
 
         <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
@@ -132,7 +132,7 @@ export function SectionLanguage() {
       </motion.div>
 
       {/* Language Selector Tabs */}
-      <div className="flex justify-center mb-10">
+      <div className="flex justify-center mb-8">
         <Tabs
           tabs={[
             { id: "cpp", label: "C++ (STL)", badge: "CP Gold Standard" },
@@ -147,40 +147,40 @@ export function SectionLanguage() {
       {/* Main Tab Content Card */}
       <motion.div
         key={activeLang}
-        initial={{ opacity: 0, scale: 0.98, y: 10 }}
+        initial={{ opacity: 0, scale: 0.98, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16"
+        transition={{ duration: 0.35, ease: "easeOut" }}
+        className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12"
       >
         {/* Left column: Overview & Pros/Cons */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="p-6 sm:p-8 rounded-2xl glass-card border border-white/10 space-y-6">
+          <div className="p-6 sm:p-8 rounded-2xl glass-card border border-white/[0.08] space-y-6">
             <div>
-              <span className="text-xs font-mono text-[#4de8f0] uppercase tracking-wider">{selected.tagline}</span>
+              <span className="text-xs font-mono text-[#48B5AC] uppercase tracking-wider">{selected.tagline}</span>
               <h3 className="text-2xl font-bold text-white mt-1">{selected.name}</h3>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div className="p-3.5 rounded-xl bg-[#090d18] border border-white/5 space-y-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div className="p-3.5 rounded-xl bg-[#121318] border border-white/5 space-y-1">
                 <span className="text-slate-400 font-mono">Syntax & Feel</span>
                 <p className="text-slate-200">{selected.syntaxFeel}</p>
               </div>
-              <div className="p-3.5 rounded-xl bg-[#090d18] border border-white/5 space-y-1">
+              <div className="p-3.5 rounded-xl bg-[#121318] border border-white/5 space-y-1">
                 <span className="text-slate-400 font-mono">Standard Library</span>
                 <p className="text-slate-200">{selected.stl}</p>
               </div>
-              <div className="p-3.5 rounded-xl bg-[#090d18] border border-white/5 space-y-1">
+              <div className="p-3.5 rounded-xl bg-[#121318] border border-white/5 space-y-1">
                 <span className="text-slate-400 font-mono">Interview Usage</span>
                 <p className="text-slate-200">{selected.interviewUsage}</p>
               </div>
-              <div className="p-3.5 rounded-xl bg-[#090d18] border border-white/5 space-y-1">
+              <div className="p-3.5 rounded-xl bg-[#121318] border border-white/5 space-y-1">
                 <span className="text-slate-400 font-mono">CP Speed Rating</span>
-                <p className="text-[#4de8f0] font-semibold">{selected.cpSpeed}</p>
+                <p className="text-[#48B5AC] font-semibold">{selected.cpSpeed}</p>
               </div>
             </div>
 
             {/* Pros and Cons lists */}
-            <div className="space-y-4 pt-2 border-t border-white/10">
+            <div className="space-y-4 pt-2 border-t border-white/[0.08]">
               <div>
                 <h4 className="text-sm font-semibold text-emerald-400 flex items-center gap-2 mb-2">
                   <Check className="w-4 h-4" /> Key Advantages for DSA
@@ -211,8 +211,8 @@ export function SectionLanguage() {
             </div>
 
             {/* Verdict Box */}
-            <div className="p-4 rounded-xl bg-gradient-to-r from-[#4de8f0]/10 to-[#9d7bff]/10 border border-[#4de8f0]/30 text-xs sm:text-sm font-medium text-slate-200">
-              <span className="font-bold text-[#4de8f0] block mb-0.5">Verdict:</span>
+            <div className="p-4 rounded-xl bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-xs sm:text-sm font-medium text-slate-200">
+              <span className="font-bold text-[#48B5AC] block mb-0.5">Verdict:</span>
               {selected.verdict}
             </div>
           </div>
@@ -220,10 +220,10 @@ export function SectionLanguage() {
 
         {/* Right column: Code snippet display */}
         <div className="lg:col-span-5 flex flex-col">
-          <div className="h-full p-6 rounded-2xl glass-panel border border-white/10 flex flex-col justify-between space-y-4">
+          <div className="h-full p-6 rounded-2xl glass-panel border border-white/[0.08] flex flex-col justify-between space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Terminal className="w-4 h-4 text-[#4de8f0]" />
+                <Terminal className="w-4 h-4 text-[#48B5AC]" />
                 <span className="text-xs font-mono text-slate-300">DSA Syntax Feel</span>
               </div>
               <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/10 text-slate-300">
@@ -231,13 +231,13 @@ export function SectionLanguage() {
               </span>
             </div>
 
-            <div className="p-4 rounded-xl bg-[#05070c] border border-white/5 overflow-x-auto font-mono text-xs text-emerald-400 leading-relaxed">
+            <div className="p-4 rounded-xl bg-[#0A0A0D] border border-white/5 overflow-x-auto font-mono text-xs text-[#48B5AC] leading-relaxed">
               <pre>{selected.codeSnippet}</pre>
             </div>
 
-            <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] text-xs text-slate-400 space-y-2">
+            <div className="p-4 rounded-xl bg-[#121318] border border-white/[0.06] text-xs text-slate-400 space-y-2">
               <div className="flex items-center gap-2 text-slate-200 font-semibold">
-                <Zap className="w-4 h-4 text-[#9d7bff]" />
+                <Zap className="w-4 h-4 text-[#D68F5C]" />
                 <span>Pro Interview Tip</span>
               </div>
               <p>
@@ -250,25 +250,25 @@ export function SectionLanguage() {
 
       {/* Side-by-side Matrix Table */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="space-y-6"
+        transition={{ duration: 0.4 }}
+        className="space-y-4"
       >
-        <h3 className="text-xl font-bold text-white flex items-center gap-2">
-          <Scale className="w-5 h-5 text-[#4de8f0]" />
+        <h3 className="text-lg font-bold text-white flex items-center gap-2">
+          <Scale className="w-5 h-5 text-[#48B5AC]" />
           <span>Side-by-Side Language Matrix</span>
         </h3>
 
-        <div className="overflow-x-auto rounded-2xl glass-panel border border-white/10">
+        <div className="overflow-x-auto rounded-2xl glass-panel border border-white/[0.08]">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
-              <tr className="border-b border-white/10 bg-white/[0.04] font-mono text-slate-300">
+              <tr className="border-b border-white/[0.08] bg-white/[0.03] font-mono text-slate-300">
                 <th className="p-4">Metric / Parameter</th>
-                <th className="p-4 text-[#4de8f0]">C++ (STL)</th>
-                <th className="p-4 text-[#9d7bff]">Java (Collections)</th>
-                <th className="p-4 text-[#38bdf8]">Python 3</th>
+                <th className="p-4 text-[#48B5AC]">C++ (STL)</th>
+                <th className="p-4 text-[#D68F5C]">Java (Collections)</th>
+                <th className="p-4 text-[#5CC2B8]">Python 3</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5 text-slate-300">
@@ -287,13 +287,13 @@ export function SectionLanguage() {
 
       {/* Neutral Recommendation Block */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mt-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-[#0d1222] via-[#121028] to-[#0d1222] border border-[#9d7bff]/30 space-y-3"
+        className="mt-8 p-6 rounded-2xl bg-[#121318] border border-[#D68F5C]/30 space-y-2.5"
       >
-        <h4 className="text-lg font-bold text-white flex items-center gap-2">
-          <Sparkles className="w-5 h-5 text-[#9d7bff]" />
+        <h4 className="text-base font-bold text-white flex items-center gap-2">
+          <Sparkles className="w-4 h-4 text-[#D68F5C]" />
           <span>Neutral Verdict: Which Should You Pick Today?</span>
         </h4>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">

@@ -145,7 +145,7 @@ export function SectionRoadmap() {
   return (
     <section id="roadmap" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Glow background */}
-      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-[#4de8f0]/10 blur-[140px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-[#48B5AC]/10 blur-[140px] pointer-events-none rounded-full" />
 
       {/* Section Header */}
       <motion.div
@@ -155,7 +155,7 @@ export function SectionRoadmap() {
         transition={{ duration: 0.6 }}
         className="text-center max-w-3xl mx-auto mb-14 space-y-4"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#4de8f0]/10 border border-[#4de8f0]/30 text-[#4de8f0] text-xs font-mono font-medium">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-[#48B5AC] text-xs font-mono font-medium">
           <Layers className="w-3.5 h-3.5" />
           <span>SECTION III • CURATED PATHWAYS</span>
         </div>
@@ -189,7 +189,7 @@ export function SectionRoadmap() {
               onClick={() => setViewMode("list")}
               className={`px-3 py-1.5 rounded-lg transition-all ${
                 viewMode === "list"
-                  ? "bg-[#4de8f0]/20 text-[#4de8f0] border border-[#4de8f0]/30 font-semibold"
+                  ? "bg-[#48B5AC]/20 text-[#48B5AC] border border-[#48B5AC]/30 font-semibold"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -199,7 +199,7 @@ export function SectionRoadmap() {
               onClick={() => setViewMode("phase")}
               className={`px-3 py-1.5 rounded-lg transition-all ${
                 viewMode === "phase"
-                  ? "bg-[#9d7bff]/20 text-[#9d7bff] border border-[#9d7bff]/30 font-semibold"
+                  ? "bg-[#D68F5C]/20 text-[#D68F5C] border border-[#D68F5C]/30 font-semibold"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -232,10 +232,10 @@ export function SectionRoadmap() {
                       className={`p-4 rounded-xl glass-card border transition-all cursor-pointer select-none flex items-start gap-3.5 ${
                         isDone
                           ? "bg-emerald-950/20 border-emerald-500/40"
-                          : "border-white/10 hover:border-[#4de8f0]/30"
+                          : "border-white/10 hover:border-[#48B5AC]/30"
                       }`}
                     >
-                      <button className="mt-0.5 text-slate-400 hover:text-[#4de8f0] transition-colors shrink-0">
+                      <button className="mt-0.5 text-slate-400 hover:text-[#48B5AC] transition-colors shrink-0">
                         {isDone ? (
                           <CheckSquare className="w-5 h-5 text-emerald-400 fill-emerald-950" />
                         ) : (
@@ -258,7 +258,7 @@ export function SectionRoadmap() {
                         </div>
                         <p className="text-xs text-slate-400 leading-relaxed">{topic.desc}</p>
                         <div className="flex flex-wrap gap-1.5 pt-1">
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#9d7bff]/10 text-[#9d7bff] border border-[#9d7bff]/20">
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#D68F5C]/10 text-[#D68F5C] border border-[#D68F5C]/20">
                             {topic.phase}
                           </span>
                           {topic.tags.map((tag, tIdx) => (
@@ -285,7 +285,7 @@ export function SectionRoadmap() {
                   return (
                     <div key={pIdx} className="space-y-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-xl bg-[#4de8f0]/10 border border-[#4de8f0]/30 text-[#4de8f0] font-mono font-bold flex items-center justify-center text-sm">
+                        <div className="w-8 h-8 rounded-xl bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-[#48B5AC] font-mono font-bold flex items-center justify-center text-sm">
                           0{pIdx + 1}
                         </div>
                         <h3 className="text-lg font-bold text-white flex items-center gap-2">
@@ -306,7 +306,7 @@ export function SectionRoadmap() {
                               className={`p-4 rounded-xl glass-card border transition-all cursor-pointer select-none flex items-start gap-3 ${
                                 isDone
                                   ? "bg-emerald-950/20 border-emerald-500/40"
-                                  : "border-white/10 hover:border-[#4de8f0]/30"
+                                  : "border-white/10 hover:border-[#48B5AC]/30"
                               }`}
                             >
                               <button className="mt-0.5 text-slate-400 shrink-0">
@@ -350,16 +350,16 @@ export function SectionRoadmap() {
               <div
                 key={subject.id}
                 className={`p-6 rounded-2xl glass-card border ${
-                  subject.isJNTUKSpecial ? "border-[#9d7bff]/40 bg-[#120e24]/70" : "border-white/10"
+                  subject.isJNTUKSpecial ? "border-[#D68F5C]/40 bg-[#120e24]/70" : "border-white/10"
                 } space-y-4 flex flex-col justify-between`}
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[11px] font-mono text-[#4de8f0] bg-[#4de8f0]/10 border border-[#4de8f0]/30 px-2.5 py-0.5 rounded-full">
+                    <span className="text-[11px] font-mono text-[#48B5AC] bg-[#48B5AC]/10 border border-[#48B5AC]/30 px-2.5 py-0.5 rounded-full">
                       {subject.code}
                     </span>
                     {subject.isJNTUKSpecial && (
-                      <span className="text-[10px] font-mono text-[#9d7bff] bg-[#9d7bff]/20 border border-[#9d7bff]/40 px-2 py-0.5 rounded-full flex items-center gap-1">
+                      <span className="text-[10px] font-mono text-[#D68F5C] bg-[#D68F5C]/20 border border-[#D68F5C]/40 px-2 py-0.5 rounded-full flex items-center gap-1">
                         <GraduationCap className="w-3 h-3" /> JNTUK / SRKR Special
                       </span>
                     )}
@@ -388,7 +388,7 @@ export function SectionRoadmap() {
 
                 {/* Why it matters note */}
                 <div className="mt-4 pt-3 border-t border-white/10 text-xs text-slate-400 bg-black/20 p-3 rounded-xl">
-                  <span className="font-semibold text-[#4de8f0] block mb-1">Why It Matters in Interviews:</span>
+                  <span className="font-semibold text-[#48B5AC] block mb-1">Why It Matters in Interviews:</span>
                   {subject.whyItMatters}
                 </div>
               </div>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Cpu, GraduationCap, BookOpen } from "lucide-react";
+import { Cpu, GraduationCap } from "lucide-react";
 
 interface CoreSubject {
   id: string;
@@ -79,18 +79,19 @@ export function SectionCoreCSE() {
     <section id="core-cse" className="relative py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
       {/* Header */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
         className="text-center max-w-3xl mx-auto space-y-3"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/30 text-[#38bdf8] text-xs font-mono font-medium">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-[#48B5AC] text-xs font-mono font-medium">
           <Cpu className="w-3.5 h-3.5" />
-          <span>COMPUTER SCIENCE FUNDAMENTALS</span>
+          <span>TAB 2 OF 7 • COMPUTER SCIENCE FUNDAMENTALS</span>
         </div>
 
-        <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight font-sora">
-          Core CSE & <span className="text-gradient-cyan">JNTUK/SRKR Subjects</span>
+        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight font-sora">
+          Core CSE & <span className="text-gradient-teal">JNTUK/SRKR Subjects</span>
         </h2>
 
         <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
@@ -100,23 +101,25 @@ export function SectionCoreCSE() {
 
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {CORE_SUBJECTS.map((subject) => (
+        {CORE_SUBJECTS.map((subject, idx) => (
           <motion.div
             key={subject.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.35, delay: idx * 0.06 }}
+            whileHover={{ y: -3, scale: 1.01 }}
             className={`p-6 rounded-2xl glass-card border ${
-              subject.isJNTUKSpecial ? "border-[#9d7bff]/40 bg-[#120e24]/70" : "border-white/10"
+              subject.isJNTUKSpecial ? "border-[#D68F5C]/40 bg-[#18151A]/80" : "border-white/[0.08]"
             } space-y-4 flex flex-col justify-between`}
           >
             <div className="space-y-3">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-[11px] font-mono text-[#4de8f0] bg-[#4de8f0]/10 border border-[#4de8f0]/30 px-2.5 py-0.5 rounded-full">
+                <span className="text-[11px] font-mono text-[#48B5AC] bg-[#48B5AC]/10 border border-[#48B5AC]/30 px-2.5 py-0.5 rounded-full">
                   {subject.code}
                 </span>
                 {subject.isJNTUKSpecial && (
-                  <span className="text-[10px] font-mono text-[#9d7bff] bg-[#9d7bff]/20 border border-[#9d7bff]/40 px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <span className="text-[10px] font-mono text-[#D68F5C] bg-[#D68F5C]/20 border border-[#D68F5C]/40 px-2 py-0.5 rounded-full flex items-center gap-1">
                     <GraduationCap className="w-3 h-3" /> JNTUK Special
                   </span>
                 )}
@@ -144,8 +147,8 @@ export function SectionCoreCSE() {
             </div>
 
             {/* Why it matters */}
-            <div className="mt-4 pt-3 border-t border-white/10 text-xs text-slate-400 bg-black/20 p-3 rounded-xl">
-              <span className="font-semibold text-[#4de8f0] block mb-1">Why It Matters in Interviews:</span>
+            <div className="mt-4 pt-3 border-t border-white/[0.08] text-xs text-slate-400 bg-black/20 p-3 rounded-xl">
+              <span className="font-semibold text-[#48B5AC] block mb-1">Why It Matters in Interviews:</span>
               {subject.whyItMatters}
             </div>
           </motion.div>

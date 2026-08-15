@@ -2,14 +2,14 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Building2, ShieldCheck, CheckCircle2, Award } from "lucide-react";
+import { Award, CheckCircle2 } from "lucide-react";
 
 const COMPANY_TIERS = [
   {
-    tier: "Tier 1: MAANG & Global Tech Giants",
-    badge: "Package Expectation: ₹25L - ₹50L+",
+    tier: "Tier 1: Global Tech Giants & High Scale Firms",
+    badge: "Expectation: High Scale & Deep Invariants",
     description: "Rigorously tests advanced DSA (DP, Graphs, Trees), System Design, and CS core depth.",
-    accent: "border-[#4de8f0]/40 text-[#4de8f0] bg-[#4de8f0]/10",
+    accent: "border-[#48B5AC]/40 text-[#48B5AC] bg-[#48B5AC]/10",
     companies: [
       { name: "Google", role: "DSA (5 rounds) + LLD/HLD" },
       { name: "Amazon", role: "DSA + Leadership Principles" },
@@ -23,9 +23,9 @@ const COMPANY_TIERS = [
   },
   {
     tier: "Tier 2: High-Growth Product Unicorns",
-    badge: "Package Expectation: ₹12L - ₹28L",
+    badge: "Expectation: Full-Stack & Production Systems",
     description: "Evaluates strong Web Dev/Full-stack proficiency combined with solid medium-hard DSA.",
-    accent: "border-[#9d7bff]/40 text-[#9d7bff] bg-[#9d7bff]/10",
+    accent: "border-[#D68F5C]/40 text-[#D68F5C] bg-[#D68F5C]/10",
     companies: [
       { name: "Flipkart", role: "DSA + Machine Coding Round" },
       { name: "Razorpay", role: "Full-Stack + Node/React + DSA" },
@@ -38,10 +38,10 @@ const COMPANY_TIERS = [
     ],
   },
   {
-    tier: "Tier 3: SRKR & Tier-2 Campus Recruiters",
-    badge: "Package Expectation: ₹4.5L - ₹10L",
+    tier: "Tier 3: Enterprise & Campus Recruiters",
+    badge: "Expectation: Core CS & Programming Basics",
     description: "Primary focus on DBMS/SQL, OOP concepts, Python/Java basics, Aptitude, and Web fundamentals.",
-    accent: "border-[#38bdf8]/40 text-[#38bdf8] bg-[#38bdf8]/10",
+    accent: "border-[#48B5AC]/30 text-[#48B5AC] bg-[#48B5AC]/10",
     companies: [
       { name: "TCS (Digital/Ninja)", role: "Aptitude + SQL + Java/Python" },
       { name: "Infosys (Power Programmer)", role: "HackWithInfy DSA + Hackerrank" },
@@ -60,22 +60,23 @@ export function SectionCompanies() {
     <section id="companies" className="relative py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
       {/* Section Header */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
         className="text-center max-w-3xl mx-auto space-y-3"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#4de8f0]/10 border border-[#4de8f0]/30 text-[#4de8f0] text-xs font-mono font-medium">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-[#48B5AC] text-xs font-mono font-medium">
           <Award className="w-3.5 h-3.5" />
-          <span>RECRUITER TIERS & PLACEMENT BENCHMARKS</span>
+          <span>TAB 7 OF 7 • RECRUITER TIERS & INTERVIEW BENCHMARKS</span>
         </div>
 
-        <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight font-sora">
-          Top Recruiting Tiers & <span className="text-gradient-cyan">Hiring Expectations</span>
+        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight font-sora">
+          Top Recruiting Tiers & <span className="text-gradient-teal">Hiring Expectations</span>
         </h2>
 
         <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-          From MAANG tech giants to SRKR campus recruiters, explore what interview rounds expect across package tiers.
+          From global tech leaders to campus recruiters, explore interview structures and technical expectations across tiers.
         </p>
       </motion.div>
 
@@ -84,9 +85,10 @@ export function SectionCompanies() {
         {COMPANY_TIERS.map((tierGroup, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: idx * 0.08 }}
             className="p-6 rounded-2xl glass-card border border-white/[0.08] space-y-4"
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -104,10 +106,10 @@ export function SectionCompanies() {
               {tierGroup.companies.map((company, cIdx) => (
                 <div
                   key={cIdx}
-                  className="p-3.5 rounded-xl bg-[#081220] border border-white/10 hover:border-[#4de8f0]/40 transition-all shrink-0 min-w-[210px] group/chip"
+                  className="p-3.5 rounded-xl bg-[#121318] border border-white/[0.08] hover:border-[#48B5AC]/40 transition-all shrink-0 min-w-[210px] group/chip"
                 >
-                  <div className="flex items-center gap-2 text-sm font-semibold text-white group-hover/chip:text-[#4de8f0]">
-                    <CheckCircle2 className="w-4 h-4 text-[#4de8f0] shrink-0" />
+                  <div className="flex items-center gap-2 text-sm font-semibold text-white group-hover/chip:text-[#48B5AC]">
+                    <CheckCircle2 className="w-4 h-4 text-[#48B5AC] shrink-0" />
                     <span>{company.name}</span>
                   </div>
                   <p className="text-[11px] text-slate-400 mt-1 font-mono">{company.role}</p>

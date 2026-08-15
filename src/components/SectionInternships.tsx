@@ -4,19 +4,13 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Briefcase,
-  Layers,
-  Code2,
-  Sparkles,
-  GitBranch,
-  Terminal,
   ExternalLink,
   Zap,
   Award,
-  CheckCircle,
   FolderGit2,
   TrendingUp,
+  Sparkles,
   Users,
-  ShieldCheck,
 } from "lucide-react";
 
 const RECRUITER_SKILLS = [
@@ -51,7 +45,7 @@ const PROJECT_IDEAS: ProjectIdea[] = [
     difficulty: "Intermediate",
     techStack: ["React", "TypeScript", "Canvas API / Framer Motion", "Tailwind CSS"],
     resumeImpact: "Demonstrates deep understanding of algorithm internals, time complexity, and data representation.",
-    badgeColor: "bg-[#4de8f0]/10 text-[#4de8f0] border-[#4de8f0]/30",
+    badgeColor: "bg-[#48B5AC]/10 text-[#48B5AC] border-[#48B5AC]/30",
   },
   {
     id: "proj-2",
@@ -61,10 +55,10 @@ const PROJECT_IDEAS: ProjectIdea[] = [
     difficulty: "Intermediate",
     techStack: ["Next.js", "Node.js", "PostgreSQL", "Prisma ORM", "Tailwind CSS"],
     resumeImpact: "Proves production-grade full-stack skills, relational database design, and real-world CRUD execution.",
-    badgeColor: "bg-[#9d7bff]/10 text-[#9d7bff] border-[#9d7bff]/30",
+    badgeColor: "bg-[#D68F5C]/10 text-[#D68F5C] border-[#D68F5C]/30",
   },
   {
-    id: "proj-[#3]",
+    id: "proj-3",
     title: "AI-Powered Code Reviewer & DSA Coach",
     category: "AI-Integrated",
     description: "LLM-driven assistant that analyzes student code submissions, highlights time-complexity inefficiencies, and generates test case hints without revealing answers.",
@@ -81,7 +75,7 @@ const PROJECT_IDEAS: ProjectIdea[] = [
     difficulty: "Advanced",
     techStack: ["React", "Node.js", "Socket.io / WebSockets", "Monaco Editor"],
     resumeImpact: "Highlights awareness of network latency, pub/sub concurrency, and WebSocket protocols.",
-    badgeColor: "bg-[#4de8f0]/10 text-[#4de8f0] border-[#4de8f0]/30",
+    badgeColor: "bg-[#48B5AC]/10 text-[#48B5AC] border-[#48B5AC]/30",
   },
   {
     id: "proj-5",
@@ -91,7 +85,7 @@ const PROJECT_IDEAS: ProjectIdea[] = [
     difficulty: "Intermediate",
     techStack: ["TypeScript", "React", "Chart.js", "OS Mechanics"],
     resumeImpact: "Directly bridges core CSE academic concepts (OS/DLCO) with visual frontend software engineering.",
-    badgeColor: "bg-[#9d7bff]/10 text-[#9d7bff] border-[#9d7bff]/30",
+    badgeColor: "bg-[#D68F5C]/10 text-[#D68F5C] border-[#D68F5C]/30",
   },
   {
     id: "proj-6",
@@ -101,7 +95,7 @@ const PROJECT_IDEAS: ProjectIdea[] = [
     difficulty: "Advanced",
     techStack: ["Node.js / Go", "Redis", "PostgreSQL", "Docker", "Swagger Docs"],
     resumeImpact: "High impact for product company backend roles (Flipkart, Swiggy, Amazon).",
-    badgeColor: "bg-[#38bdf8]/10 text-[#38bdf8] border-[#38bdf8]/30",
+    badgeColor: "bg-[#48B5AC]/10 text-[#48B5AC] border-[#48B5AC]/30",
   },
 ];
 
@@ -116,25 +110,25 @@ export function SectionInternships() {
       : PROJECT_IDEAS.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="internships" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="internships" className="relative py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
       {/* Background glow */}
-      <div className="absolute top-1/3 left-1/3 w-[600px] h-[400px] bg-[#9d7bff]/10 blur-[150px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/3 left-1/3 w-[600px] h-[400px] bg-[#48B5AC]/10 blur-[150px] pointer-events-none rounded-full" />
 
       {/* Section Header */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+        transition={{ duration: 0.4 }}
+        className="text-center max-w-3xl mx-auto space-y-3"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#9d7bff]/10 border border-[#9d7bff]/30 text-[#9d7bff] text-xs font-mono font-medium">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-[#48B5AC] text-xs font-mono font-medium">
           <Briefcase className="w-3.5 h-3.5" />
-          <span>SECTION IV • CAREER EXECUTION</span>
+          <span>TAB 5 OF 7 • CAREER EXECUTION</span>
         </div>
 
-        <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-          Internships, Skills, & Projects That <span className="text-gradient-violet">Get You Hired</span>
+        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight font-sora">
+          Projects & Skills That <span className="text-gradient-teal">Get You Hired</span>
         </h2>
 
         <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
@@ -144,24 +138,24 @@ export function SectionInternships() {
 
       {/* SUB-BLOCK A: Skills Recruiters Look For */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mb-16 space-y-6"
+        transition={{ duration: 0.4 }}
+        className="space-y-4"
       >
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+        <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
           <div>
-            <h3 className="text-xl font-bold text-white flex items-center gap-2.5">
-              <Zap className="w-5 h-5 text-[#4de8f0]" />
-              <span>Sub-Block A: Core Skills Recruiters Scan For</span>
+            <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <Zap className="w-4 h-4 text-[#48B5AC]" />
+              <span>Core Skills Recruiters Scan For</span>
             </h3>
             <p className="text-xs text-slate-400 mt-0.5">
               Essential skill keywords prioritized during initial ATS filters and technical HR screens.
             </p>
           </div>
-          <span className="hidden sm:inline-flex text-xs font-mono text-[#4de8f0] bg-[#4de8f0]/10 px-3 py-1 rounded-full border border-[#4de8f0]/30">
-            JetBrains Mono Tag Cloud
+          <span className="hidden sm:inline-flex text-xs font-mono text-[#48B5AC] bg-[#48B5AC]/10 px-3 py-1 rounded-full border border-[#48B5AC]/30">
+            Keyword Cloud
           </span>
         </div>
 
@@ -170,17 +164,17 @@ export function SectionInternships() {
           {RECRUITER_SKILLS.map((skill, idx) => (
             <motion.div
               key={idx}
-              whileHover={{ scale: 1.04, y: -2 }}
-              className="p-3 rounded-xl glass-card border border-white/10 hover:border-[#4de8f0]/40 flex items-center gap-2.5 group cursor-default"
+              whileHover={{ scale: 1.02, y: -2 }}
+              className="p-3 rounded-xl glass-card border border-white/[0.08] hover:border-[#48B5AC]/40 flex items-center gap-2.5 group cursor-default"
             >
-              <div className="w-2 h-2 rounded-full bg-[#4de8f0] shadow-[0_0_8px_#4de8f0] group-hover:animate-ping" />
+              <div className="w-2 h-2 rounded-full bg-[#48B5AC] shadow-[0_0_8px_#48B5AC]" />
               <span className="font-mono text-xs sm:text-sm font-medium text-slate-200 group-hover:text-white">
                 {skill.name}
               </span>
               <span
                 className={`text-[10px] font-mono px-2 py-0.5 rounded ${
                   skill.priority === "Must Have"
-                    ? "bg-[#4de8f0]/15 text-[#4de8f0] border border-[#4de8f0]/30"
+                    ? "bg-[#48B5AC]/15 text-[#48B5AC] border border-[#48B5AC]/30"
                     : "bg-white/5 text-slate-400"
                 }`}
               >
@@ -193,17 +187,17 @@ export function SectionInternships() {
 
       {/* SUB-BLOCK B: Reliable Project Ideas */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mb-16 space-y-6"
+        transition={{ duration: 0.4 }}
+        className="space-y-4"
       >
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/[0.08] pb-3">
           <div>
-            <h3 className="text-xl font-bold text-white flex items-center gap-2.5">
-              <FolderGit2 className="w-5 h-5 text-[#9d7bff]" />
-              <span>Sub-Block B: 6 High-Impact Project Ideas for Your Resume</span>
+            <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <FolderGit2 className="w-4 h-4 text-[#D68F5C]" />
+              <span>6 High-Impact Project Ideas for Your Resume</span>
             </h3>
             <p className="text-xs text-slate-400 mt-0.5">
               Avoid generic todo-list apps. Build projects that demonstrate algorithmic, database, and system-level thinking.
@@ -218,7 +212,7 @@ export function SectionInternships() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3 py-1 rounded-lg text-xs font-mono transition-all ${
                   selectedCategory === cat
-                    ? "bg-[#9d7bff]/20 text-[#9d7bff] border border-[#9d7bff]/40 font-semibold"
+                    ? "bg-[#48B5AC]/20 text-[#48B5AC] border border-[#48B5AC]/40 font-semibold"
                     : "bg-white/[0.04] text-slate-400 hover:text-white"
                 }`}
               >
@@ -230,11 +224,15 @@ export function SectionInternships() {
 
         {/* Project Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project, idx) => (
             <motion.div
               key={project.id}
-              whileHover={{ y: -6 }}
-              className="p-6 rounded-2xl glass-card border border-white/10 flex flex-col justify-between space-y-4 group"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: idx * 0.05 }}
+              whileHover={{ y: -3, scale: 1.01 }}
+              className="p-6 rounded-2xl glass-card border border-white/[0.08] flex flex-col justify-between space-y-4 group"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between gap-2">
@@ -252,9 +250,9 @@ export function SectionInternships() {
                   </span>
                 </div>
 
-                <h4 className="text-lg font-bold text-white group-hover:text-[#4de8f0] transition-colors flex items-center justify-between">
+                <h4 className="text-base font-bold text-white group-hover:text-[#48B5AC] transition-colors flex items-center justify-between">
                   <span>{project.title}</span>
-                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-[#4de8f0] transition-colors shrink-0" />
+                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-[#48B5AC] transition-colors shrink-0" />
                 </h4>
 
                 <p className="text-xs text-slate-300 leading-relaxed">{project.description}</p>
@@ -264,7 +262,7 @@ export function SectionInternships() {
                   {project.techStack.map((tech, tIdx) => (
                     <span
                       key={tIdx}
-                      className="text-[11px] font-mono bg-[#051424] border border-white/10 px-2 py-0.5 rounded text-slate-300"
+                      className="text-[11px] font-mono bg-[#0A0A0D] border border-white/10 px-2 py-0.5 rounded text-slate-300"
                     >
                       {tech}
                     </span>
@@ -273,8 +271,8 @@ export function SectionInternships() {
               </div>
 
               {/* Resume Impact callout */}
-              <div className="mt-4 pt-3 border-t border-white/10 text-xs text-slate-400 bg-black/20 p-3 rounded-xl">
-                <span className="font-semibold text-[#9d7bff] block mb-0.5">Resume & Interview Value:</span>
+              <div className="mt-4 pt-3 border-t border-white/[0.08] text-xs text-slate-400 bg-black/20 p-3 rounded-xl">
+                <span className="font-semibold text-[#D68F5C] block mb-0.5">Resume & Interview Value:</span>
                 {project.resumeImpact}
               </div>
             </motion.div>
@@ -284,18 +282,18 @@ export function SectionInternships() {
 
       {/* SUB-BLOCK C: How Internships Help */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="p-6 sm:p-8 rounded-2xl glass-panel border border-[#4de8f0]/30 space-y-6"
+        transition={{ duration: 0.4 }}
+        className="p-6 sm:p-8 rounded-2xl glass-panel border border-[#48B5AC]/30 space-y-6"
       >
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-4">
           <div className="space-y-1">
-            <span className="text-xs font-mono text-[#4de8f0] uppercase tracking-wider">Sub-Block C • Career Catalyst</span>
-            <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
-              <Award className="w-6 h-6 text-[#4de8f0]" />
-              <span>How Even One Internship Dramatically Changes Your Placement Odds</span>
+            <span className="text-xs font-mono text-[#48B5AC] uppercase tracking-wider">Career Catalyst</span>
+            <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+              <Award className="w-5 h-5 text-[#48B5AC]" />
+              <span>How Even One Internship Dramatically Changes Your Career Trajectory</span>
             </h3>
           </div>
           <span className="px-3 py-1 rounded-full text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 shrink-0">
@@ -304,9 +302,9 @@ export function SectionInternships() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-4 rounded-xl bg-[#081220] border border-white/5 space-y-2">
+          <div className="p-4 rounded-xl bg-[#121318] border border-white/5 space-y-2">
             <div className="flex items-center gap-2 text-white font-bold text-sm">
-              <TrendingUp className="w-4 h-4 text-[#4de8f0]" />
+              <TrendingUp className="w-4 h-4 text-[#48B5AC]" />
               <span>1. Resume Filter Bypass</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
@@ -314,9 +312,9 @@ export function SectionInternships() {
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#081220] border border-white/5 space-y-2">
+          <div className="p-4 rounded-xl bg-[#121318] border border-white/5 space-y-2">
             <div className="flex items-center gap-2 text-white font-bold text-sm">
-              <Sparkles className="w-4 h-4 text-[#9d7bff]" />
+              <Sparkles className="w-4 h-4 text-[#D68F5C]" />
               <span>2. Authentic Interview Stories</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
@@ -324,7 +322,7 @@ export function SectionInternships() {
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#081220] border border-white/5 space-y-2">
+          <div className="p-4 rounded-xl bg-[#121318] border border-white/5 space-y-2">
             <div className="flex items-center gap-2 text-white font-bold text-sm">
               <Users className="w-4 h-4 text-emerald-400" />
               <span>3. PPOs & Referral Networks</span>
