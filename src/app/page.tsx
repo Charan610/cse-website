@@ -1,188 +1,183 @@
 "use client";
 
-import React, { useState, useEffect, useTransition } from "react";
-import { Navbar, NAV_ITEMS } from "@/components/Navbar";
-import { Toast } from "@/components/Toast";
-import { SectionLanguage } from "@/components/SectionLanguage";
-import { SectionCoreCSE } from "@/components/SectionCoreCSE";
-import { SectionDSARoadmap } from "@/components/SectionDSARoadmap";
-import { SectionWebDevRoadmap } from "@/components/SectionWebDevRoadmap";
-import { SectionInternships } from "@/components/SectionInternships";
-import { SectionTrends } from "@/components/SectionTrends";
-import { SectionCompanies } from "@/components/SectionCompanies";
-import { FloatingAIAssistant } from "@/components/FloatingAIAssistant";
-import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, ArrowLeft, ArrowRight } from "lucide-react";
+import React, { useState } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { Terminal, ArrowRight, CheckCircle2 } from "lucide-react";
 
-export default function Home() {
-  const [activeTab, setActiveTab] = useState<string>("languages");
-  const [, startTransition] = useTransition();
+export default function IntroGatePage() {
+  const [showExitNote, setShowExitNote] = useState(false);
 
-  useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
-    if (hash && NAV_ITEMS.some((item) => item.id === hash)) {
-      setActiveTab(hash);
-    }
-  }, []);
-
-  const handleTabChange = (id: string) => {
-    startTransition(() => {
-      setActiveTab(id);
-      window.location.hash = id;
-      window.scrollTo(0, 0);
-    });
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.18,
+        delayChildren: 0.1,
+      },
+    },
   };
 
-  const currentIndex = NAV_ITEMS.findIndex((item) => item.id === activeTab);
-  const prevSlide = currentIndex > 0 ? NAV_ITEMS[currentIndex - 1] : null;
-  const nextSlide = currentIndex < NAV_ITEMS.length - 1 ? NAV_ITEMS[currentIndex + 1] : null;
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.45,
+        ease: "easeOut",
+      },
+    },
+  };
 
   return (
-    <div className="relative min-h-screen bg-[#0A0A0D] text-[#E4E7EE] selection:bg-[#48B5AC]/30 selection:text-[#48B5AC] overflow-hidden flex flex-col justify-between">
+    <div className="relative min-h-screen bg-[#0A0A0D] text-[#E4E7EE] selection:bg-[#48B5AC]/30 selection:text-[#48B5AC] flex flex-col justify-between p-6 sm:p-12 md:p-16 overflow-x-hidden">
       {/* Background Subtle Grid & Ambient Glow */}
-      <div className="fixed inset-0 bg-grid-lumina opacity-30 pointer-events-none z-0" />
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-[#48B5AC]/10 via-[#D68F5C]/5 to-transparent blur-[100px] pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-grid-lumina opacity-25 pointer-events-none z-0" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-[#48B5AC]/10 via-[#D68F5C]/5 to-transparent blur-[140px] pointer-events-none z-0" />
 
-      {/* Sticky Navigation Bar */}
-      <Navbar activeTab={activeTab} onSelectTab={handleTabChange} />
-
-      {/* Main Slide Workspace */}
-      <main className="relative z-10 pt-20 sm:pt-24 pb-12 flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-        {/* Top-level Separate Tabs Switcher Bar */}
-        <div className="my-6 p-1.5 rounded-2xl glass-panel border border-white/[0.08] flex items-center justify-start gap-1.5 overflow-x-auto no-scrollbar scroll-smooth">
-          {NAV_ITEMS.map((item, idx) => {
-            const Icon = item.icon;
-            const isActive = activeTab === item.id;
-            return (
-              <motion.button
-                key={item.id}
-                onClick={() => handleTabChange(item.id)}
-                whileHover={{ scale: 1.015 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.1 }}
-                className={`relative px-3.5 py-2.5 rounded-xl text-xs font-mono font-medium transition-colors flex items-center gap-2 shrink-0 ${
-                  isActive
-                    ? "text-white font-bold"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeSubTabBar"
-                    className="absolute inset-0 rounded-xl bg-[#48B5AC]/20 border border-[#48B5AC]/40 shadow-[0_0_15px_rgba(72,181,172,0.15)] z-0"
-                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                  />
-                )}
-                <span
-                  className={`relative z-10 w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-bold ${
-                    isActive ? "bg-[#48B5AC] text-[#0A0A0D]" : "bg-white/10 text-slate-400"
-                  }`}
-                >
-                  0{idx + 1}
-                </span>
-                <Icon className={`w-3.5 h-3.5 relative z-10 ${isActive ? "text-[#48B5AC]" : "text-slate-400"}`} />
-                <span className="relative z-10 whitespace-nowrap">{item.label}</span>
-              </motion.button>
-            );
-          })}
-        </div>
-
-        {/* High-Performance Instant Crossfade Tab Display */}
-        <AnimatePresence mode="popLayout" initial={false}>
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="w-full"
-          >
-            {activeTab === "languages" && <SectionLanguage />}
-            {activeTab === "core-cse" && <SectionCoreCSE />}
-            {activeTab === "dsa-roadmap" && <SectionDSARoadmap />}
-            {activeTab === "webdev-roadmap" && <SectionWebDevRoadmap />}
-            {activeTab === "internships-projects" && <SectionInternships />}
-            {activeTab === "trends" && <SectionTrends />}
-            {activeTab === "companies" && <SectionCompanies />}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Previous / Next Tab Footer Navigation */}
-        <div className="mt-12 pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
-          {prevSlide ? (
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.1 }}
-              onClick={() => handleTabChange(prevSlide.id)}
-              className="w-full sm:w-auto px-5 py-3 rounded-xl glass-card border border-white/[0.08] hover:border-[#48B5AC]/40 text-xs font-mono text-slate-300 hover:text-white flex items-center justify-center gap-2 group transition-all"
-            >
-              <ArrowLeft className="w-4 h-4 text-[#48B5AC] group-hover:-translate-x-1 transition-transform" />
-              <span>Previous Tab: {prevSlide.label}</span>
-            </motion.button>
-          ) : (
-            <div className="hidden sm:block" />
-          )}
-
-          <div className="text-xs font-mono text-slate-400 text-center">
-            Tab <span className="text-[#48B5AC] font-bold">{currentIndex + 1}</span> of {NAV_ITEMS.length}
+      {/* Header Stamp */}
+      <header className="relative z-10 max-w-2xl mx-auto w-full flex items-center justify-between pb-8 border-b border-white/[0.06]">
+        <div className="flex items-center gap-2.5">
+          <div className="p-1.5 rounded-lg bg-[#48B5AC]/15 border border-[#48B5AC]/30 text-[#48B5AC]">
+            <Terminal className="w-4 h-4" />
           </div>
-
-          {nextSlide ? (
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.1 }}
-              onClick={() => handleTabChange(nextSlide.id)}
-              className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#48B5AC]/15 border border-[#48B5AC]/40 hover:border-[#48B5AC] text-xs font-mono text-white font-semibold flex items-center justify-center gap-2 group transition-all"
-            >
-              <span>Next Tab: {nextSlide.label}</span>
-              <ArrowRight className="w-4 h-4 text-[#48B5AC] group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-          ) : (
-            <div className="hidden sm:block" />
-          )}
+          <span className="font-mono text-xs text-slate-400 uppercase tracking-wider">
+            CSE Guide <span className="text-slate-600">/</span> Note Before Entering
+          </span>
         </div>
+        <span className="font-mono text-[11px] text-[#48B5AC] bg-[#48B5AC]/10 px-2.5 py-0.5 rounded-full border border-[#48B5AC]/20">
+          30-SEC READ
+        </span>
+      </header>
+
+      {/* Main Gate Card */}
+      <main className="relative z-10 max-w-2xl mx-auto w-full my-auto py-10 sm:py-14">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-8"
+        >
+          {/* Beat 1: Blunt opening */}
+          <motion.div variants={itemVariants} className="space-y-3">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white font-sora leading-snug">
+              This site is built around one idea:{" "}
+              <span className="text-gradient-teal">DSA decides most of your shortlist.</span>
+            </h1>
+            <p className="text-sm sm:text-base text-slate-400 leading-relaxed font-sans">
+              If that doesn’t interest you right now, this guide probably isn’t for you — and that’s completely fine.
+            </p>
+          </motion.div>
+
+          {/* Beat 2: Why it matters */}
+          <motion.div
+            variants={itemVariants}
+            className="p-5 sm:p-6 rounded-2xl glass-card border border-white/[0.08] space-y-2 bg-[#121318]/70"
+          >
+            <span className="text-xs font-mono text-[#D68F5C] uppercase tracking-wider block">
+              The Hiring Reality
+            </span>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Most technical interview rounds at product and growing tech firms test core problem solving — arrays, trees, graphs, and dynamic programming invariants — regardless of the specific role. University marks and attendance give you eligibility; solving problems under time pressure gets you shortlisted.
+            </p>
+          </motion.div>
+
+          {/* Beat 3: What actually stops most students */}
+          <motion.div variants={itemVariants} className="space-y-3.5">
+            <h2 className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+              What actually stops most students:
+            </h2>
+            <div className="space-y-2.5">
+              <div className="p-3.5 rounded-xl bg-[#121318]/60 border border-white/[0.05] flex items-start gap-3">
+                <CheckCircle2 className="w-4 h-4 text-[#48B5AC] shrink-0 mt-0.5" />
+                <p className="text-xs sm:text-sm text-slate-300 leading-normal">
+                  <strong className="text-white font-medium">Not knowing where to start</strong> — paralyzed by dozens of conflicting sheets and fragmented opinions online.
+                </p>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-[#121318]/60 border border-white/[0.05] flex items-start gap-3">
+                <CheckCircle2 className="w-4 h-4 text-[#48B5AC] shrink-0 mt-0.5" />
+                <p className="text-xs sm:text-sm text-slate-300 leading-normal">
+                  <strong className="text-white font-medium">Starting late</strong> — telling yourself <em>&ldquo;I&rsquo;ll begin after this semester&rsquo;s exams&rdquo;</em> every single term.
+                </p>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-[#121318]/60 border border-white/[0.05] flex items-start gap-3">
+                <CheckCircle2 className="w-4 h-4 text-[#48B5AC] shrink-0 mt-0.5" />
+                <p className="text-xs sm:text-sm text-slate-300 leading-normal">
+                  <strong className="text-white font-medium">Comparing progress to others</strong> and quitting early instead of maintaining quiet consistency.
+                </p>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-[#121318]/60 border border-white/[0.05] flex items-start gap-3">
+                <CheckCircle2 className="w-4 h-4 text-[#48B5AC] shrink-0 mt-0.5" />
+                <p className="text-xs sm:text-sm text-slate-300 leading-normal">
+                  <strong className="text-white font-medium">Treating DSA as optional</strong> rather than the foundational skill that determines technical shortlists.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Beat 4: One-line pitch */}
+          <motion.div variants={itemVariants} className="pt-2">
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-mono border-l-2 border-[#48B5AC] pl-4 py-1">
+              This site gives you one cohesive path: which language to pick, which subjects to prioritize, and a clean roadmap to follow — no more deciding what to do next, just doing it.
+            </p>
+          </motion.div>
+
+          {/* Beat 5: Two-way exit */}
+          <motion.div variants={itemVariants} className="pt-4 space-y-4">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Link
+                href="/guide"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#48B5AC] hover:bg-[#5CC2B8] text-[#0A0A0D] font-mono text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(72,181,172,0.3)] transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <span>I&rsquo;m in — show me the path</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => setShowExitNote(!showExitNote)}
+                className="text-xs font-mono text-slate-400 hover:text-slate-200 transition-colors py-2 px-3"
+              >
+                Not for me right now
+              </button>
+            </div>
+
+            {/* Polite no-guilt feedback if user clicks "Not for me" */}
+            <AnimatePresence>
+              {showExitNote && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] text-xs text-slate-400 font-mono overflow-hidden space-y-1.5"
+                >
+                  <p>
+                    No worries at all. Whenever you feel ready to prepare for technical interviews, bookmark this and come back anytime.
+                  </p>
+                  <p className="text-[11px] text-slate-500">
+                    You can still explore the full guide whenever you want by visiting{" "}
+                    <Link href="/guide" className="text-[#48B5AC] underline underline-offset-2">
+                      /guide
+                    </Link>
+                    .
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </motion.div>
       </main>
 
-      {/* Floating AI Assistant Widget */}
-      <FloatingAIAssistant />
-
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/[0.08] bg-[#0E0F14]/90 backdrop-blur-md py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-[#121318] border border-[#48B5AC]/30">
-              <Terminal className="w-4 h-4 text-[#48B5AC]" />
-            </div>
-            <div>
-              <span className="font-bold text-sm text-white tracking-tight font-sora">
-                CSE<span className="text-gradient-teal">Guide</span>
-              </span>
-              <p className="text-[11px] text-slate-400 font-mono">
-                Built with love by Charan • Guided Modular Roadmap
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-6 text-xs text-slate-400 font-mono">
-            <a
-              href="https://www.instagram.com/charan__3_/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#48B5AC] transition-colors flex items-center gap-1.5"
-            >
-              <svg className="w-3.5 h-3.5 text-[#D68F5C] fill-current" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-              <span>Instagram</span>
-            </a>
-          </div>
-        </div>
+      <footer className="relative z-10 max-w-2xl mx-auto w-full pt-8 border-t border-white/[0.06] flex items-center justify-between text-xs text-slate-400 font-mono">
+        <span>Curated with love by Charan</span>
+        <span>2026 Edition</span>
       </footer>
-
-      {/* Toast Notification */}
-      <Toast />
     </div>
   );
 }
