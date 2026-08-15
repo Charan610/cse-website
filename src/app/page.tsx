@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useTransition } from "react";
 import { Navbar, NAV_ITEMS } from "@/components/Navbar";
 import { Toast } from "@/components/Toast";
 import { SectionLanguage } from "@/components/SectionLanguage";
@@ -16,6 +16,7 @@ import { Terminal, ArrowLeft, ArrowRight } from "lucide-react";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string>("languages");
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
@@ -25,9 +26,11 @@ export default function Home() {
   }, []);
 
   const handleTabChange = (id: string) => {
-    setActiveTab(id);
-    window.location.hash = id;
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    startTransition(() => {
+      setActiveTab(id);
+      window.location.hash = id;
+      window.scrollTo(0, 0);
+    });
   };
 
   const currentIndex = NAV_ITEMS.findIndex((item) => item.id === activeTab);
@@ -37,8 +40,8 @@ export default function Home() {
   return (
     <div className="relative min-h-screen bg-[#0A0A0D] text-[#E4E7EE] selection:bg-[#48B5AC]/30 selection:text-[#48B5AC] overflow-hidden flex flex-col justify-between">
       {/* Background Subtle Grid & Ambient Glow */}
-      <div className="fixed inset-0 bg-grid-lumina opacity-40 pointer-events-none z-0" />
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-b from-[#48B5AC]/10 via-[#D68F5C]/5 to-transparent blur-[160px] pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-grid-lumina opacity-30 pointer-events-none z-0" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-[#48B5AC]/10 via-[#D68F5C]/5 to-transparent blur-[100px] pointer-events-none z-0" />
 
       {/* Sticky Navigation Bar */}
       <Navbar activeTab={activeTab} onSelectTab={handleTabChange} />
@@ -56,6 +59,7 @@ export default function Home() {
                 onClick={() => handleTabChange(item.id)}
                 whileHover={{ scale: 1.015 }}
                 whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.1 }}
                 className={`relative px-3.5 py-2.5 rounded-xl text-xs font-mono font-medium transition-colors flex items-center gap-2 shrink-0 ${
                   isActive
                     ? "text-white font-bold"
@@ -65,8 +69,8 @@ export default function Home() {
                 {isActive && (
                   <motion.div
                     layoutId="activeSubTabBar"
-                    className="absolute inset-0 rounded-xl bg-[#48B5AC]/20 border border-[#48B5AC]/40 shadow-[0_0_20px_rgba(72,181,172,0.15)] z-0"
-                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                    className="absolute inset-0 rounded-xl bg-[#48B5AC]/20 border border-[#48B5AC]/40 shadow-[0_0_15px_rgba(72,181,172,0.15)] z-0"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
                   />
                 )}
                 <span
@@ -83,14 +87,14 @@ export default function Home() {
           })}
         </div>
 
-        {/* Animated Single Component Display Per Tab */}
-        <AnimatePresence mode="wait">
+        {/* High-Performance Instant Crossfade Tab Display */}
+        <AnimatePresence mode="popLayout" initial={false}>
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
             className="w-full"
           >
             {activeTab === "languages" && <SectionLanguage />}
@@ -109,6 +113,7 @@ export default function Home() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.1 }}
               onClick={() => handleTabChange(prevSlide.id)}
               className="w-full sm:w-auto px-5 py-3 rounded-xl glass-card border border-white/[0.08] hover:border-[#48B5AC]/40 text-xs font-mono text-slate-300 hover:text-white flex items-center justify-center gap-2 group transition-all"
             >
@@ -127,6 +132,7 @@ export default function Home() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.1 }}
               onClick={() => handleTabChange(nextSlide.id)}
               className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#48B5AC]/15 border border-[#48B5AC]/40 hover:border-[#48B5AC] text-xs font-mono text-white font-semibold flex items-center justify-center gap-2 group transition-all"
             >
@@ -139,11 +145,11 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Floating AI Assistant Widget (Phase 4) */}
+      {/* Floating AI Assistant Widget */}
       <FloatingAIAssistant />
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/[0.08] bg-[#0E0F14]/90 backdrop-blur-xl py-8 px-4 sm:px-6 lg:px-8">
+      <footer className="relative z-10 border-t border-white/[0.08] bg-[#0E0F14]/90 backdrop-blur-md py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-xl bg-[#121318] border border-[#48B5AC]/30">

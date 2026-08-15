@@ -25,7 +25,7 @@ export function Navbar({ activeTab, onSelectTab }: NavbarProps) {
   const handleSelect = (id: string) => {
     onSelectTab(id);
     setIsMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo(0, 0);
   };
 
   return (
