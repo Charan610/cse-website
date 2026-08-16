@@ -5,13 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, Menu, X, Code2, Compass, Layers, Briefcase, Building2, Globe, Cpu } from "lucide-react";
 
 export const NAV_ITEMS = [
-  { id: "languages", label: "DSA Languages", icon: Code2, badge: "Tab 1" },
-  { id: "core-cse", label: "Core CSE & JNTUK", icon: Cpu, badge: "Tab 2" },
-  { id: "dsa-roadmap", label: "DSA Roadmap", icon: Layers, badge: "Tab 3" },
-  { id: "webdev-roadmap", label: "Web Dev Roadmap", icon: Globe, badge: "Tab 4" },
-  { id: "internships-projects", label: "Projects & Skills", icon: Briefcase, badge: "Tab 5" },
-  { id: "trends", label: "Industry Trends", icon: Compass, badge: "Tab 6" },
-  { id: "companies", label: "Top Companies", icon: Building2, badge: "Tab 7" },
+  { id: "trends", label: "Industry Trends", icon: Compass, badge: "Tab 1" },
+  { id: "companies", label: "Top Companies", icon: Building2, badge: "Tab 2" },
+  { id: "languages", label: "DSA Languages", icon: Code2, badge: "Tab 3" },
+  { id: "core-cse", label: "Core CSE & JNTUK", icon: Cpu, badge: "Tab 4" },
+  { id: "dsa-roadmap", label: "DSA Roadmap", icon: Layers, badge: "Tab 5" },
+  { id: "webdev-roadmap", label: "Web Dev Roadmap", icon: Globe, badge: "Tab 6" },
+  { id: "internships-projects", label: "Projects & Skills", icon: Briefcase, badge: "Tab 7" },
 ];
 
 interface NavbarProps {
@@ -33,7 +33,7 @@ export function Navbar({ activeTab, onSelectTab }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
         <button
-          onClick={() => handleSelect("languages")}
+          onClick={() => handleSelect("trends")}
           className="flex items-center gap-2.5 group cursor-pointer text-left shrink-0"
         >
           <div className="p-2 rounded-xl bg-[#48B5AC]/15 border border-[#48B5AC]/30 group-hover:border-[#48B5AC] transition-colors">

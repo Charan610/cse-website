@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { StatCard } from "./StatCard";
 import { IndustryChart } from "./Chart";
-import { Code, Cpu, TrendingUp, Flame } from "lucide-react";
+import { Code, Cpu, TrendingUp, Flame, Compass } from "lucide-react";
 
 export function SectionTrends() {
   return (
@@ -18,8 +18,8 @@ export function SectionTrends() {
         className="text-center max-w-3xl mx-auto space-y-3"
       >
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-[#48B5AC] text-xs font-mono font-medium">
-          <Flame className="w-3.5 h-3.5" />
-          <span>TAB 6 OF 7 • INDUSTRY RECRUITMENT REALITY</span>
+          <Compass className="w-3.5 h-3.5" />
+          <span>TAB 1 OF 7 • INDUSTRY RECRUITMENT REALITY</span>
         </div>
 
         <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight font-sora">

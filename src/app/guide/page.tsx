@@ -15,7 +15,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, ArrowLeft, ArrowRight } from "lucide-react";
 
 export default function GuidePage() {
-  const [activeTab, setActiveTab] = useState<string>("languages");
+  const [activeTab, setActiveTab] = useState<string>("trends");
   const [, startTransition] = useTransition();
 
   useEffect(() => {
@@ -97,13 +97,13 @@ export default function GuidePage() {
             transition={{ duration: 0.15, ease: "easeOut" }}
             className="w-full"
           >
+            {activeTab === "trends" && <SectionTrends />}
+            {activeTab === "companies" && <SectionCompanies />}
             {activeTab === "languages" && <SectionLanguage />}
             {activeTab === "core-cse" && <SectionCoreCSE />}
             {activeTab === "dsa-roadmap" && <SectionDSARoadmap />}
             {activeTab === "webdev-roadmap" && <SectionWebDevRoadmap />}
             {activeTab === "internships-projects" && <SectionInternships />}
-            {activeTab === "trends" && <SectionTrends />}
-            {activeTab === "companies" && <SectionCompanies />}
           </motion.div>
         </AnimatePresence>
 

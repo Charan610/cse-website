@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Award, CheckCircle2 } from "lucide-react";
+import { Award, CheckCircle2, Building2 } from "lucide-react";
 
 const COMPANY_TIERS = [
   {
@@ -67,8 +67,8 @@ export function SectionCompanies() {
         className="text-center max-w-3xl mx-auto space-y-3"
       >
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-[#48B5AC] text-xs font-mono font-medium">
-          <Award className="w-3.5 h-3.5" />
-          <span>TAB 7 OF 7 • RECRUITER TIERS & INTERVIEW BENCHMARKS</span>
+          <Building2 className="w-3.5 h-3.5" />
+          <span>TAB 2 OF 7 • RECRUITER TIERS & INTERVIEW BENCHMARKS</span>
         </div>
 
         <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight font-sora">

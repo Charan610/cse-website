@@ -71,7 +71,7 @@ export function SectionDSARoadmap() {
       >
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-[#48B5AC] text-xs font-mono font-medium">
           <Code className="w-3.5 h-3.5" />
-          <span>TAB 3 OF 7 • ALGORITHMIC CURRICULUM</span>
+          <span>TAB 5 OF 7 • ALGORITHMIC CURRICULUM</span>
         </div>
 
         <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight font-sora">

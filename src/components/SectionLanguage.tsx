@@ -119,7 +119,7 @@ export function SectionLanguage() {
       >
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#48B5AC]/10 border border-[#48B5AC]/30 text-[#48B5AC] text-xs font-mono font-medium">
           <Code2 className="w-3.5 h-3.5" />
-          <span>TAB 1 OF 7 • LANGUAGE ARCHITECTURE</span>
+          <span>TAB 3 OF 7 • LANGUAGE ARCHITECTURE</span>
         </div>
 
         <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
