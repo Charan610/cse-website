@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Code, CheckSquare, Square } from "lucide-react";
+import { Code, CheckSquare, Square, ExternalLink, Zap, Layers, Sparkles, BookOpen } from "lucide-react";
 
 interface TopicItem {
   id: string;
@@ -12,6 +12,21 @@ interface TopicItem {
   estimatedHours: string;
   tags: string[];
 }
+
+const STAGES_LIST = [
+  { id: "cpp-basics", num: "01", label: "C++ Basics" },
+  { id: "stl", num: "02", label: "STL Containers", highlight: true },
+  { id: "math-recursion", num: "03", label: "Math & Recursion" },
+  { id: "sorting-searching", num: "04", label: "Sorting & Searching" },
+  { id: "arrays-strings", num: "05", label: "Arrays & Strings" },
+  { id: "linked-lists", num: "06", label: "Linked Lists" },
+  { id: "stacks-queues", num: "07", label: "Stacks & Queues" },
+  { id: "trees", num: "08", label: "Trees & BST" },
+  { id: "graphs", num: "09", label: "Graphs & Networks" },
+  { id: "greedy", num: "10", label: "Greedy Algos" },
+  { id: "dynamic-programming", num: "11", label: "Dynamic Prog" },
+  { id: "advanced", num: "12", label: "Advanced Topics" },
+];
 
 const DSA_TOPICS: TopicItem[] = [
   { id: "dsa-1", name: "Arrays & Time Complexity", desc: "Two pointers, Sliding window, Prefix sums, Cadet's Algorithm.", phase: "Foundation", estimatedHours: "15 hrs", tags: ["Easy-Med", "Crucial"] },
@@ -66,6 +81,100 @@ export function SectionDSARoadmap() {
         <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
           Complete step-by-step Data Structures & Algorithms topic checklists for technical interview rounds.
         </p>
+      </motion.div>
+
+      {/* =========================================================================
+          FIRST IN SECTION: FEATURED ANIMATED 12-STAGE C++ & DSA ROADMAP HERO
+          ========================================================================= */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        whileHover={{ y: -2 }}
+        className="relative overflow-hidden rounded-2xl glass-panel border border-[#48B5AC]/30 p-6 sm:p-8 bg-gradient-to-br from-[#121620] via-[#101217] to-[#15121b] shadow-2xl transition-all"
+      >
+        {/* Animated glowing beam line */}
+        <motion.div
+          animate={{ x: ["-100%", "200%"] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
+          className="absolute top-0 left-0 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-[#48B5AC] to-transparent"
+        />
+
+        {/* Ambient Glow Pill */}
+        <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#48B5AC]/10 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-[#D68F5C]/10 blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="space-y-3 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#48B5AC]/15 border border-[#48B5AC]/30 text-[#48B5AC] text-xs font-mono font-semibold">
+              <span className="w-2 h-2 rounded-full bg-[#48B5AC] animate-pulse" />
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>PRIMARY LEARNING BLUEPRINT · 12 STAGES</span>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl font-bold text-white font-sora leading-snug">
+              C++ to Advanced Data Structures &amp; Algorithms Roadmap
+            </h3>
+
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Complete structured sequence from C++ memory mechanics and battle-tested STL containers (<code className="text-[#48B5AC] font-mono text-xs">#stl</code>) to advanced Dynamic Programming, Graph Theory, and interview checkpoints.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 shrink-0">
+            <a
+              href="/dsa-roadmap.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#48B5AC] to-[#3aa097] text-[#0A0A0C] font-mono text-xs font-bold shadow-lg shadow-[#48B5AC]/20 hover:shadow-[#48B5AC]/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>LAUNCH FULL ROADMAP</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+
+            <a
+              href="/dsa-roadmap.html#stl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#D68F5C]/15 border border-[#D68F5C]/40 text-[#D68F5C] hover:bg-[#D68F5C]/25 hover:text-white font-mono text-xs font-semibold hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              title="Jump directly to Stage 02: Standard Template Library"
+            >
+              <Zap className="w-4 h-4 text-[#D68F5C]" />
+              <span>⚡ 02 · STL SPEC</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+
+        {/* Quick Jump Stage Chips */}
+        <div className="mt-6 pt-5 border-t border-white/[0.08]">
+          <div className="flex items-center gap-2 mb-3">
+            <Layers className="w-3.5 h-3.5 text-[#48B5AC]" />
+            <span className="text-xs font-mono font-medium text-slate-400">DIRECT JUMP TO ANY STAGE (OPENS IN NEW TAB):</span>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {STAGES_LIST.map((st) => (
+              <a
+                key={st.id}
+                href={`/dsa-roadmap.html#${st.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-all hover:scale-105 ${
+                  st.highlight
+                    ? "bg-[#48B5AC]/20 border border-[#48B5AC]/40 text-[#48B5AC] font-bold hover:bg-[#48B5AC] hover:text-black"
+                    : "bg-white/[0.04] border border-white/[0.08] text-slate-300 hover:border-[#48B5AC]/40 hover:text-white hover:bg-white/[0.08]"
+                }`}
+              >
+                <span className="text-[10px] opacity-60">{st.num}</span>
+                <span>{st.label}</span>
+                <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+              </a>
+            ))}
+          </div>
+        </div>
       </motion.div>
 
       {/* Progress & Controls */}
